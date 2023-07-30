@@ -1,0 +1,42 @@
+
+meals = {
+    "Palatschinken": ["Mehl", "Eier", "Milch", "Sprudelwasser", "Salz"],
+    "Omelette": ["Eier", "Milch", "Käse", "Gemüse"],
+    "Pasta": ["Mehl", "Eier", "Salz", "Wasser"],
+    "Minibrötchen": ["Mehl", "Skyr", "Backpulver", "Salz", "Milch"],
+    "Pizza": ["Pizzateig", "Tomatenmark", "Oregano", "Basilikum", "Käse", "Salami", "Mozzarella"],
+    "Tortellonisalad": ["Tortelloni", "Minitomaten", "Minimozzarella", "Balsamicoessig", "Olivenöl"],
+    "Nudeln mit Pesto": ["Nudeln", "Pesto", "Käse", "Feta"],
+    "Quark mit Kartoffel": ["russischer Quark", "saure Sahne", "Knoblauch", "Kartoffel"],
+    "Ratatouille": ["Zucchini", "Aubergine", "Tomaten", "Dosentomaten", "Zwiebel"],
+    "Kichererbsensalat": ["Kichererbsen", "Feta", "Essig", "Olivenöl", "Basilikum", "Oregano", "Tomaten"],
+    "Hummus": ["Kichererbsen", "Olivenöl", "Knoblauch", "Tahini", "Zitrone", "Kreuzkümmel", "Salz", "Pfeffer"],
+    "Crumble": ["Obst", "Mehl", "Butter", "Zucker" "Stärke", "Zimt", "Zitrone"],
+    "Pizzateig": ["Mehl", "Hefe", "Zucker", "Wasser", "Salz"],
+    "Hefezopf": ["Mehl", "Hefe", "Eier", "Zucker", "Salz", "Butter"]
+    # Add more meals here...
+}
+
+def get_user_input():
+    ingredients = input("Enter a list of ingredients (separated by commas): ")
+    return [ingredient.strip() for ingredient in ingredients.split(",")]
+
+def find_meals_with_ingredient(ingredients):
+    meals_with_ingredient = []
+    for meal, meal_ingredients in meals.items():
+        for ingredient in ingredients:
+            if ingredient in meal_ingredients and meal not in meals_with_ingredient:
+                meals_with_ingredient.append(meal)
+    return meals_with_ingredient
+
+def main():
+    user_ingredients = get_user_input()
+    meals_containing_ingredient = find_meals_with_ingredient(user_ingredients)
+
+    if meals_containing_ingredient:
+        print(f"The following meals contain the ingredient(s): {', '.join(meals_containing_ingredient)}")
+    else:
+        print("No meals found containing the ingredient(s).")
+
+if __name__ == "__main__":
+    main()
